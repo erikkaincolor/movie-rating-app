@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %} Cinemaphile #{{ user.user_id}} - Details{% endblock %}
+
+{% block body %}
+<h1>Hey Cinemaphile!</h1>
+
+<p>
+  {{ user.user_id }}
+</p>
+
+<img src="{{ movie.poster_path }}">
+{% endblock %}

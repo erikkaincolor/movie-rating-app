@@ -30,6 +30,12 @@ def create_user(email, password): #DONE
 # >>> db.session.add(user1)
 # >>> db.session.commit()
 
+def get_user_by_id(user_id): #DONE, for server
+    return User.query.get(user_id)
+
+
+
+
 def create_movie(title, overview, release_date, poster_path): #DONE
     """Create and return a new movie."""
     from datetime import datetime
@@ -48,7 +54,7 @@ def get_movies(): #DONE, for seed
     return Movie.query.all()
  
 def get_movie_by_id(movie_id): #DONE, for server
-    return Movie.query.filter_by(Movie.movie_id==movie_id).first()
+    return Movie.query.get(movie_id)
     # return Movie.query.get(movie_id)
 
 
