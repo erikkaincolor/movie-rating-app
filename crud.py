@@ -1,5 +1,8 @@
 "This file manipulates the data in the db, saves to it, and reads/queries it via execution functions"
 
+#  utility functions for creating data. 
+
+
 # >>> db.session.rollback()<------incase of error
 
 #creating new data, 
@@ -16,7 +19,7 @@
 from model import db, User, Movie, Rating, connect_to_db
 
 
-def create_user(email, password):
+def create_user(email, password): #DONE
     """Create and return a new user."""
     user = User(email=email, password=password)
     # db.session.add(user)
@@ -27,7 +30,7 @@ def create_user(email, password):
 # >>> db.session.add(user1)
 # >>> db.session.commit()
 
-def create_movie(title, overview, release_date, poster_path):
+def create_movie(title, overview, release_date, poster_path): #DONE
     """Create and return a new movie."""
     from datetime import datetime
     movie=Movie(title=title, overview=overview, release_date=release_date, poster_path=poster_path)    
@@ -38,10 +41,19 @@ def create_movie(title, overview, release_date, poster_path):
 # >>> from datetime import datetime                  
 # >>> mo=create_movie(title='Test Movie', overview="About a movie.", release_date=datetime.now(), poster_path="blah")
 # >>> db.session.add(mo)
-# >>> db.session.commit()     
- 
+# >>> db.session.commit()   
 
-def create_rating(user, movie, score):
+def get_movies(): #DONE, for seed
+    """this will get all movie data"""
+    return Movie.query.all()
+ 
+def get_movie_by_id(movie_id): #DONE, for server
+    return Movie.query.filter_by(Movie.movie_id==movie_id).first()
+    # return Movie.query.get(movie_id)
+
+
+
+def create_rating(user, movie, score): #DONE
     """create a rating of a movie"""
     rating=Rating(user=user, movie=movie, score=score)
     return rating

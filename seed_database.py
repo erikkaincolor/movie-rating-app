@@ -58,3 +58,8 @@ for n in range(10):
         model.db.session.add(db_rating)
 
 model.db.session.commit() #i keep including in the for loop 
+
+
+#here its 10 random ratings based on movies and scores
+#i need 3 random art favorites based on art object appending to patron via art_fave magic var
+favorite=patron.art_fave.append(art_obj)
