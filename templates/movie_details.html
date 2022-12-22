@@ -5,6 +5,13 @@
 {% block body %}
 <h1>{{ movie.title }}</h1>
 
+<p><label>Rate 1-5:</label>
+<form action="/users/{user.id}/{rating.id}" method="POST">
+<input type="text" value="rating">
+<input type="submit" value="Submit Rating">
+</form>
+</p>
+
 <p>
   {{ movie.overview }}
 </p>

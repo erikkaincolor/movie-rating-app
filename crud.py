@@ -30,8 +30,27 @@ def create_user(email, password): #DONE
 # >>> db.session.add(user1)
 # >>> db.session.commit()
 
+def get_users(): #DONE, for server
+    return User.query.all()
+
+
+
 def get_user_by_id(user_id): #DONE, for server
-    return User.query.get(user_id)
+    return User.query.get(user_id) #####
+
+
+def get_user_by_email(email):
+    return User.query.filter(User.email==email).first()
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -40,14 +59,14 @@ def create_movie(title, overview, release_date, poster_path): #DONE
     """Create and return a new movie."""
     from datetime import datetime
     movie=Movie(title=title, overview=overview, release_date=release_date, poster_path=poster_path)    
-    # db.session.add(movie)
-    # db.session.commit()
+    # db.session.add(movie) #will mess up atomicity
+    # db.session.commit() #will mess up atomicity
     return movie
 
 # >>> from datetime import datetime                  
 # >>> mo=create_movie(title='Test Movie', overview="About a movie.", release_date=datetime.now(), poster_path="blah")
-# >>> db.session.add(mo)
-# >>> db.session.commit()   
+# >>> db.session.add(mo) #will mess up atomicity
+# >>> db.session.commit()  #will mess up atomicity
 
 def get_movies(): #DONE, for seed
     """this will get all movie data"""
@@ -60,13 +79,28 @@ def get_movie_by_id(movie_id): #DONE, for server
 
 
 def create_rating(user, movie, score): #DONE
-    """create a rating of a movie"""
+    """create a rating of a movie..seed db side abd server side"""
     rating=Rating(user=user, movie=movie, score=score)
     return rating
 
+
+def update_rating(rating_id, new_rating):
+    """ Update a rating given rating_id and the updated score. """
+    old_rating = Rating.query.get(rating_id) #<----get old rating object by PK
+    old_rating.score = new_rating 
+    return new_rating
+
+    
+#wheres each part of the function coming from?
+#server: crud.get_user_by_id(user_id) <---user_id came from clicking on list item in template
+#db:user_id was queried in db to fetch user
+
+#server: 
+#seed: crud.create_rating(user, movie, score) <---used to create fake ratings in db....
+
 # >>> test=create_rating(user=user1, movie=mo, score=7)
-# >>> db.session.add(test)
-# >>> db.session.commit()   
+# >>> db.session.add(test) #will mess up atomicity
+# >>> db.session.commit()   #will mess up atomicity 
 
 
 
