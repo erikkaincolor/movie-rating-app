@@ -6,8 +6,8 @@
 <h1>{{ movie.title }}</h1>
 
 <p><label>Rate 1-5:</label>
-<form action="/users/{user.id}/{rating.id}" method="POST">
-<input type="text" value="rating">
+<form action="/movies/{{ movie.movie_id }}/ratings" method="POST">
+<input type="text" name="rating">
 <input type="submit" value="Submit Rating">
 </form>
 </p>
